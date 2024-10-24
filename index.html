@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Nightmare</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap'); /* Fuente sangrienta */
+        
+        /* Estructura básica del cuerpo */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #000;
+            font-family: 'Nosifer', cursive;
+            color: #fff;
+        }
+
+        /* Fondo de neblina */
+        #fog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://i.imgur.com/0uWDCGi.png') repeat;
+            z-index: -2;
+            opacity: 0.3;
+            animation: fogMove 120s infinite linear;
+        }
+
+        /* Movimiento de niebla */
+        @keyframes fogMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 2000px 0; }
+        }
+
+        /* Pantalla de introducción */
+        #intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #ff0000;
+            font-size: 8vw;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px red, 0 0 20px crimson, 0 0 30px orange;
+            animation: flickerIntro 2s infinite;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Efecto de parpadeo */
+        @keyframes flickerIntro {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Caja de texto personalizable */
+        .custom-text {
+            font-size: 5vw;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(50, 0, 0, 0.8);
+            color: white;
+            border: 2px solid red;
+            text-shadow: 0px 0px 10px black;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        /* Encabezado con efecto hover */
+        h2 {
+            font-size: 7vw;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* Animaciones interactivas */
+        .hover-effect {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hover-effect:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 20px red;
+        }
+
+        iframe {
+            width: 90%;
+            height: 300px;
+            border: 3px solid red;
+            margin: 20px auto;
+            box-shadow: 0px 0px 20px black;
+            display: block;
+        }
+
+        /* Estilo del código QR */
+        #qr {
+            margin: 30px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 200px;
+            width: 80%;
+        }
+
+        /* Sonido de fondo */
+        #bg-sound {
+            position: absolute;
+            top: -1000px;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media only screen and (max-width: 768px) {
+            #intro {
+                font-size: 10vw;
+                padding: 0 10px;
+            }
+
+            .custom-text {
+                font-size: 6vw;
+            }
+
+            h2 {
+                font-size: 8vw;
+            }
+
+            iframe {
+                height: 250px;
+            }
+
+            img {
+                max-width: 150px;
+            }
+        }
+
+        /* Ajustes para pantallas muy pequeñas (móviles) */
+        @media only screen and (max-width: 480px) {
+            #intro {
+                font-size: 12vw;
+            }
+
+            .custom-text {
+                font-size: 7vw;
+            }
+
+            h2 {
+                font-size: 10vw;
+            }
+
+            iframe {
+                height: 200px;
+            }
+
+            img {
+                max-width: 120px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="fog"></div>
+
+    <!-- Introducción terrorífica -->
+    <div id="intro">El horror te espera...</div>
+
+    <!-- Texto personalizable -->
+    <textarea id="customText" class="custom-text" rows="4" cols="50">
+        Cuidado con lo que deseas...
+    </textarea>
+
+    <!-- Mapa y QR -->
+    <h2 class="hover-effect">Encuentra el lugar maldito:</h2>
+    <iframe id="map" src=""></iframe>
+    <div id="qr">
+        <img id="qrImage" src="" alt="Código QR"/>
+    </div>
+
+    <!-- Sonido de fondo -->
+    <audio id="bg-sound" autoplay loop>
+        <source src="https://www.soundjay.com/horror/sounds/scary-background-01.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        // Función para animar la entrada del texto
+        gsap.from("#intro", {
+            duration: 3, 
+            scale: 0.8, 
+            opacity: 0,
+            ease: "power3.out",
+            onComplete: function() {
+                document.getElementById('intro').style.display = 'none'; // Desaparece tras mostrar
+            }
+        });
+    </script>
+</body>
+</html>
