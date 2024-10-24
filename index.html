@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juega o Muere</title>
+    <title>La Noche de Halloween</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap'); /* Fuente sangrienta */
         
-        /* Estructura básica del cuerpo */
+        /* Estructura básica */
         body, html {
             margin: 0;
             padding: 0;
@@ -15,9 +15,24 @@
             background-color: #000;
             font-family: 'Nosifer', cursive;
             color: #fff;
+            text-align: center;
+            height: 100vh;
         }
 
-        /* Fondo de neblina */
+        /* Fondo terrorífico */
+        body {
+            background: url('https://images.unsplash.com/photo-1574191391565-6d8d7f3b7279?fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            animation: flicker 2s infinite;
+        }
+
+        /* Efecto de iluminación oscilante (flicker) */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Niebla de fondo */
         #fog {
             position: fixed;
             top: 0;
@@ -25,86 +40,57 @@
             width: 100vw;
             height: 100vh;
             background: url('https://i.imgur.com/0uWDCGi.png') repeat;
-            z-index: -2;
+            z-index: -1;
             opacity: 0.3;
             animation: fogMove 120s infinite linear;
         }
 
-        /* Movimiento de niebla */
+        /* Movimiento de la niebla */
         @keyframes fogMove {
             0% { background-position: 0 0; }
             100% { background-position: 2000px 0; }
         }
 
-        /* Pantalla de introducción */
-        #intro {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Introducción con texto sangriento */
+        h1 {
+            font-size: 7vw;
             color: #ff0000;
-            font-size: 8vw;
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 10px red, 0 0 20px crimson, 0 0 30px orange;
+            text-shadow: 0 0 10px crimson, 0 0 20px orange;
+            margin-top: 10vh;
             animation: flickerIntro 2s infinite;
-            text-align: center;
-            padding: 0 20px;
         }
 
-        /* Efecto de parpadeo */
+        /* Efecto de parpadeo para el texto */
         @keyframes flickerIntro {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
         }
 
-        /* Caja de texto personalizable */
-        .custom-text {
-            font-size: 5vw;
-            margin: 30px auto;
+        /* Imagen central */
+        #scary-image {
+            margin-top: 20px;
+            max-width: 80%;
+            height: auto;
+            box-shadow: 0 0 20px black;
+            opacity: 0.8;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* Efecto de hover para la imagen */
+        #scary-image:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* Texto personalizable */
+        #custom-text {
+            font-size: 2vw;
+            margin-top: 30px;
             padding: 20px;
             background: rgba(50, 0, 0, 0.8);
-            color: white;
             border: 2px solid red;
+            display: inline-block;
             text-shadow: 0px 0px 10px black;
-            width: 90%;
-            max-width: 800px;
-        }
-
-        /* Encabezado con efecto hover */
-        h2 {
-            font-size: 7vw;
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        /* Animaciones interactivas */
-        .hover-effect {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hover-effect:hover {
-            transform: scale(1.2);
-            text-shadow: 0 0 20px red;
-        }
-
-        iframe {
-            width: 90%;
-            height: 300px;
-            border: 3px solid red;
-            margin: 20px auto;
-            box-shadow: 0px 0px 20px black;
-            display: block;
-        }
-
-        /* Estilo del código QR */
-        #qr {
-            margin: 30px;
-            text-align: center;
-        }
-
-        img {
-            max-width: 200px;
-            width: 80%;
         }
 
         /* Sonido de fondo */
@@ -113,72 +99,46 @@
             top: -1000px;
         }
 
-        /* Responsividad para pantallas pequeñas */
-        @media only screen and (max-width: 768px) {
-            #intro {
-                font-size: 10vw;
-                padding: 0 10px;
-            }
-
-            .custom-text {
-                font-size: 6vw;
-            }
-
-            h2 {
-                font-size: 8vw;
-            }
-
-            iframe {
-                height: 250px;
-            }
-
-            img {
-                max-width: 150px;
-            }
+        /* Jumpscare (imagen que aparece de repente) */
+        #jumpscare {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Ajustes para pantallas muy pequeñas (móviles) */
-        @media only screen and (max-width: 480px) {
-            #intro {
-                font-size: 12vw;
-            }
-
-            .custom-text {
-                font-size: 7vw;
-            }
-
-            h2 {
-                font-size: 10vw;
-            }
-
-            iframe {
-                height: 200px;
-            }
-
-            img {
-                max-width: 120px;
-            }
+        #jumpscare img {
+            max-width: 90%;
+            max-height: 90%;
         }
 
     </style>
 </head>
 <body>
 
+    <!-- Niebla de fondo -->
     <div id="fog"></div>
 
-    <!-- Introducción terrorífica -->
-    <div id="intro">El horror te espera...</div>
+    <!-- Título de introducción -->
+    <h1>¡Prepárate para el horror!</h1>
+
+    <!-- Imagen espeluznante -->
+    <img id="scary-image" src="https://i.imgur.com/OBGNZp9.png" alt="Imagen terrorífica">
 
     <!-- Texto personalizable -->
-    <textarea id="customText" class="custom-text" rows="4" cols="50">
-        Cuidado con lo que deseas...
-    </textarea>
+    <div id="custom-text">
+        <p>¡Cuidado! Algo oscuro te está observando...</p>
+    </div>
 
-    <!-- Mapa y QR -->
-    <h2 class="hover-effect">Encuentra el lugar maldito:</h2>
-    <iframe id="map" src=""></iframe>
-    <div id="qr">
-        <img id="qrImage" src="" alt="Código QR"/>
+    <!-- Jumpscare (imagen que aparece de repente) -->
+    <div id="jumpscare">
+        <img src="https://i.imgur.com/Iv8Xy8g.png" alt="Jumpscare" />
     </div>
 
     <!-- Sonido de fondo -->
@@ -186,18 +146,32 @@
         <source src="https://www.soundjay.com/horror/sounds/scary-background-01.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <!-- Sonido del jumpscare -->
+    <audio id="scream-sound">
+        <source src="https://www.soundjay.com/human/sounds/scream-woman-01.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        // Función para animar la entrada del texto
-        gsap.from("#intro", {
-            duration: 3, 
-            scale: 0.8, 
-            opacity: 0,
-            ease: "power3.out",
-            onComplete: function() {
-                document.getElementById('intro').style.display = 'none'; // Desaparece tras mostrar
-            }
-        });
+        // Función para cambiar la imagen
+        function updateImage(imageUrl) {
+            document.getElementById('scary-image').src = imageUrl;
+        }
+
+        // Función para cambiar el texto
+        function updateText(newText) {
+            document.getElementById('custom-text').innerHTML = `<p>${newText}</p>`;
+        }
+
+        // Jumpscare que aparece después de 5 segundos
+        setTimeout(function() {
+            document.getElementById('jumpscare').style.display = 'flex';
+            document.getElementById('scream-sound').play(); // Reproduce el sonido de grito
+            setTimeout(function() {
+                document.getElementById('jumpscare').style.display = 'none';
+            }, 3000); // Elimina el jumpscare después de 3 segundos
+        }, 5000); // Aparece después de 5 segundos
+
     </script>
+
 </body>
 </html>
