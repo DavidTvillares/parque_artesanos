@@ -8,6 +8,7 @@ body {
     margin: 0;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(156, 2, 2, 0.719)),
                   url(../img/Espeluznante.jpg);
+    overflow: hidden;
                 
 }
 h1 {

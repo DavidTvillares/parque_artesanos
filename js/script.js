@@ -34,6 +34,12 @@ playVideoButton.addEventListener('click', () => {
     video.play();  // Reproducir el video
 });
 
+$('#video').bind('ended', function() {   
+    // Cerramos la ventana del video
+    var videoEl = document.getElementById('video');  
+    videoEl.webkitExitFullScreen();
+  });
+
 // Al hacer clic en el botón para cerrar la imagen
 closeImageButton.addEventListener('click', () => {
     imageContainer.classList.add('hidden');  // Ocultar la imagen
