@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(156, 2, 2, 0.719)),
+                  url(../img/Espeluznante.jpg);
+                
+}
+h1 {
+    color: #f01e1ebb;
+   margin-bottom: 20px;
+
+}
+
+p {
+    font-size: 30px;
+    padding: 10px 20px;
+
+    
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 150px;
+    cursor: pointer;
+    background-color: #ff6600de;
+    color: rgb(138, 5, 5);
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+#videoContainer {
+   margin-top: 20px;
+    /* width: 56.25vh;  
+    height: 100vh;  
+    background-color: black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;*/
+}
+
+#imageContainer {
+    margin-top: 20px;
+}
+
+
+/*tamaño foto*/
+img {
+    width: 100%;
+    
+    height: auto;
+}
+
+/*tamaño vídeo*/
+video {
+    width: 100%;  /* Ajustar el video al ancho del contenedor */
+    height: 100%; /* Ajustar el video a la altura del contenedor */
+    object-fit: cover;  /* Asegurar que el video cubra el contenedor manteniendo la proporción */
+}
+
+/*botón volver a inicio*/
+
+#ubicacion {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: rgb(220, 53, 69);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#ubicacion:hover {
+    background-color: rgb(221, 53, 70);
+}
+
+a{
+    text-decoration: none;
+}
